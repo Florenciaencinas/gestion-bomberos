@@ -1,0 +1,22 @@
+version: "3.9"
+
+services:
+  mysqldb:
+    image: mysql:5.7
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+    ports:
+      - "3306:3306"
+    volumes:
+      - db:/var/lib/mysql
+  app:
+    depends_on:
+      - mysqldb
+    build: .
+    ports:
+      - "8080:8080"
+    volumes:
+      - .m2:/root/.m2
+
+volumes:
+  db:

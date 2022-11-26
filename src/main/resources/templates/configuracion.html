@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Gestion Bomberos</title>
+        <meta charset="UTF-8"></meta>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"></link>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" 
+                href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+                integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7"
+                crossorigin="anonymous"></link>
+        <link rel="stylesheet"
+                href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css"
+                integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r"
+                crossorigin="anonymous"></link>
+        <link rel="shortcut icon" type="image/x-icon" href="/images/logo_bomberos_ico.ico"></link>
+        <!-- DataBase -->
+        <script src="https://cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js"></script>
+        <link rel="stylesheet" type="text/css" 
+              href="https://cdn.datatables.net/1.10.11/css/jquery.dataTables.min.css"></link>
+        <!-- Javascript -->
+        <link rel="stylesheet"
+                href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"></link>
+        <!--<script src="https://code.jquery.com/jquery-1.12.4.js"></script>-->
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    </head>
+    <script>
+	$(document).ready(function () {
+            var currentRow="";
+            var rifa="";
+            var modalConfirm = function(callback){
+                $(".openDeleteModal").on("click", function(){
+                    $("#mi-modal").modal('show');
+                    currentRow=$(this).closest("tr");
+                });
+
+                $("#modal-btn-si").on("click", function(){
+                    callback(true);
+                    $("#mi-modal").modal('hide');
+                });
+
+                $("#modal-btn-no").on("click", function(){
+                    callback(false);
+                    $("#mi-modal").modal('hide');
+                });
+            };
+
+            modalConfirm(function(confirm){
+                if(confirm){
+                    //Acciones si el usuario confirma
+                    $.ajax({
+			url: '/campania/eliminar',
+			method: "POST",
+                        success: function(respuesta) {
+                            window.location.href = respuesta;
+                        }
+                    })
+                }
+            });
+        });
+    </script>
+    <body style="background-color: aliceblue;">
+        <header>
+            <nav class="navbar navbar-inverse">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="/">Gestion Bomberos</a>
+                    </div>
+                    <ul class="nav navbar-nav">
+                        <li><a href="/rifas">Rifas</a></li>
+                        <li><a href="/ventas">Ventas</a></li>
+                        <li><a href="/cobranza">Cobranzas</a></li>
+                        <li><a href="/reportes">Reportes</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+						<li class="dropdown">
+							<a class="dropdown-toggle" data-toggle="dropdown" href="#">Admin <span class="glyphicon glyphicon-user"></span></a>
+					        <ul class="dropdown-menu">
+								<li><a href="/configuracion"><span class="glyphicon glyphicon-cog"></span> Configuración</a></li>
+								<li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span> Cerrar sesión</a></li>
+					        </ul>
+						</li>
+				    </ul>
+                </div>
+            </nav>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div class="container-fluid">
+                        <h1 style="text-align: center;">Gestion Bomberos</h1>
+                    </div>
+                </div>
+            </div>
+	</header>
+        <div class="panel panel-default">
+            <div class="panel-body">
+				<h4>Configuracion:</h4>
+                <div class="row"
+	                     style="text-align: -webkit-center; 
+	                     padding: 40px; border: 1px solid; 
+	                     margin: 50px 20px 20px 0px;
+	                     border-color: gainsboro;">
+				    <button type="button" class="btn btn-primary btn-lg openDeleteModal" 
+				    		id="btn-confirm" style="width: 220px;height: 55px;">
+						<span style="font-family: Arial, Helvetica, sans-serif;"> Eliminar campaña</span>
+					</button>
+                </div>
+            </div>
+			<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" id="mi-modal">
+	            <div class="modal-dialog modal-sm">
+	                <div class="modal-content">
+	                    <div class="modal-header">
+	                        <button type="button" class="close" data-dismiss="modal" 
+	                                aria-label="Close">
+	                            <span aria-hidden="true">&times;</span>
+	                        </button>
+	                        <h4 class="modal-title" id="myModalLabel">¿Esta seguro que desea confirmar?</h4>
+	                    </div>
+	                    <div class="modal-footer">
+	                        <button type="button" class="btn btn-default" id="modal-btn-si">Si</button>
+	                        <button type="button" class="btn btn-primary" id="modal-btn-no">No</button>
+	                    </div>
+	                </div>
+	            </div>
+        	</div>
+        </div>
+    </body>
+</html>

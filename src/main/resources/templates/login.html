@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Gestion Bomberos</title>
+        <meta charset="UTF-8"></meta>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"></link>
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <link rel="stylesheet" href="/css/estilosLogin.css"></link>
+        <link rel="shortcut icon" type="image/x-icon" href="/images/logo_bomberos_ico.ico"></link>
+    </head>
+    <body>
+        <div class="wrapper fadeInDown">
+        <div id="formContent">
+            <!-- Tabs Titles -->
+
+            <!-- Icon -->
+            <div class="fadeIn first">
+                <img src="/images/logo_bomberos.png" height="230" width="60" id="icon" alt="User Icon" />
+            </div>
+
+            <!-- Login Form -->
+            <form action="/" method="post">
+                <input type="text" id="login" class="fadeIn second" 
+                       name="usuario" placeholder="Usuario" autocomplete="off">
+                </input>
+                <input type="password" id="password" class="fadeIn third" 
+                       name="contraseña" placeholder="Contraseña"
+                       autocomplete="off">
+                </input>
+                <input type="submit" class="fadeIn fourth" value="Ingresar">
+                </input>
+            </form>
+
+            <!-- Remind Passowrd -->
+            <div id="formFooter">
+                <a class="underlineHover" href="#">Forgot Password?</a>
+            </div>
+
+  </div>
+</div>
+    </body>
+</html>

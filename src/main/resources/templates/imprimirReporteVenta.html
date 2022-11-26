@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8"></meta>
+        <title>Gestion Bomberos - Reporte de Ventas</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"></link>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" 
+                href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+                integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7"
+                crossorigin="anonymous"></link>
+        <link rel="stylesheet"
+                href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css"
+                integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r"
+                crossorigin="anonymous"></link>
+        <link rel="shortcut icon" type="image/x-icon" href="/images/logo_bomberos_ico.ico"></link>
+        <!-- DataBase -->
+        <script src="https://cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js"></script>
+        <link rel="stylesheet" type="text/css" 
+              href="https://cdn.datatables.net/1.10.11/css/jquery.dataTables.min.css"></link>
+        <!-- Javascript -->
+        <link rel="stylesheet"
+                href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"></link>
+        <!--<script src="https://code.jquery.com/jquery-1.12.4.js"></script>-->
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <link rel="stylesheet" href="/css/estilosReporteVentas.css"></link>
+        
+    </head>
+    <body style="background-color: #7d7c7c">
+        <div id="tablin">
+            <table id="tabla2">
+                <thead>
+                    <tr>
+                        <td id="anchoItem" style='font-weight: bold;'>ESTADO</td>
+                        <td id="anchoPosicion" style='font-weight: bold;'>RIFA</td>
+                        <td id="anchoAcero" style='font-weight: bold;'>VALOR</td>
+                        <td id="anchoDiametro" style='font-weight: bold;'>APELLIDO</td>
+                        <td id="anchoCantidad" style='font-weight: bold;'>NOMBRE</td>
+                        <td id="anchoEstructura" style='font-weight: bold;'>DIRECCION</td>
+                        <td id="anchoDibujo" style='font-weight: bold;'>TELEFONO</td>
+                        <td id="anchoA" style='font-weight: bold;'>FORMA DE PAGO</td>
+                        <td id="anchoB" style='font-weight: bold;'>FECHA SUSCRIPCION</td>
+                        <td id="anchoB" style='font-weight: bold;'>VENDEDOR</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="cv : ${lista}" id="filaCabIP" value="hola">
+                        <td th:text="${cv.estado}"></td>
+                        <td th:text="${cv.rifa}"></td>
+                        <td th:text="'$ ' + ${cv.valor} + ',00'"></td>
+                        <td th:text="${cv.apellido}"></td>
+                        <td th:text="${cv.nombre}"></td>
+                        <td th:text="${cv.direccion}"></td>
+                        <td th:text="${cv.telefono}"></td>
+                        <td th:text="${cv.cantCuotas} + ' CUOTAS'"></td>
+                        <td th:text="${cv.fechaSuscripcionStr}"></td>
+                        <td th:text="${vendedor}"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </body>
+</html>

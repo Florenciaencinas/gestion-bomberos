@@ -1,0 +1,61 @@
+body {
+    margin: 0px;
+    background-color: #7d7c7c;
+    font-size: 15px;
+}
+
+.header {
+    padding-left: 10px;
+}
+
+.body {
+    padding-left: 10px;
+    margin-left: 55px;
+    border-spacing: 5px 10px;
+}
+
+.reporte {
+    background-color: white;
+    margin: 0px auto;
+    width: 831.4960629921px;
+    height: 1368px;
+    border: 1px solid black;
+    position: relative;
+}
+
+.nroCuota {
+    padding-left: 5px;
+    padding-right: 5px;
+    border: 1px solid black;
+}
+
+.subtitulo {
+    font-weight: bold;
+}
+
+.pad {
+    padding: 5px 5px 5px 0px;
+}
+
+.titulo {
+    padding-top: 10px;
+    font-size: 20px;
+    width: 794px;
+    background-color: gray;
+    color: white;
+    font-weight: bold;
+    -webkit-print-color-adjust: exact;
+}
+
+.tituloDos {
+    font-size: 20px;
+    width: 794px;
+    background-color: gray;
+    color: white;
+    font-weight: bold;
+}
+
+#titCob {
+    margin-top: 5px;
+    margin-left: 52px;
+}

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Gestion Bomberos</title>
+        <meta charset="UTF-8"></meta>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></link>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <!-- DataBase -->
+        <script src="https://cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js"></script>
+        <link rel="stylesheet" type="text/css" 
+              href="https://cdn.datatables.net/1.10.11/css/jquery.dataTables.min.css"></link>
+        <link rel="stylesheet" href="/css/imprimirSobre.css"></link>
+        <link rel="shortcut icon" type="image/x-icon" href="/images/logo_bomberos_ico.ico"></link>
+        <!-- Javascript -->
+        <link rel="stylesheet"
+                href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"></link>
+        <!--<script src="https://code.jquery.com/jquery-1.12.4.js"></script>-->
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    </head>
+    <body style="background-color: #7d7c7c">
+	<div class="item">
+            <!--HEADER-->
+            <table class="header">
+                <tr>
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                </tr>
+                <tr>
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                </tr>
+                <tr>
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                </tr>
+                <tr>
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                </tr>
+                <tr>
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                </tr>
+                <tr>
+                    <td rowspan="3">
+                        <img src="/images/logo_bomberos.png"
+                             width="30px" height="30px">
+                        </img>
+                    </td>
+                    <td rowspan="3" id="cbb">&nbsp;&nbsp;
+                        <img style="margin-left: 10px;float: right;"
+th:src="'https://www.mbcestore.com.mx/generador/image.php?code=' + ${venta.rifa} + '&amp;style=426&amp;type=C39&amp;width=200&amp;height=120&amp;xres=3&amp;font=3'"
+                        width="170" height="90"></img>
+                    </td>
+                    <td>&nbsp;&nbsp;&nbsp;</td>
+                    <td><span style="border: 1px solid black;padding: 5px;padding-bottom: 12px;"
+                              th:text="'2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' + ${venta.rifa}">
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>&nbsp;&nbsp;&nbsp;</td>
+                    <td>
+                        <span style="border: 1px solid black;padding: 5px;padding-top: 12px;" 
+                              th:text="'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' + ${venta.hasta}">
+                        </span>
+                    </td>
+                </tr>
+            </table>
+            <!--BODY-->
+            <table class="body">
+                <tr>
+                    <td><span th:text="${venta.nombre} + '&nbsp;' + ${venta.apellido}"></span></td>
+                    <td><span th:text="'$&nbsp;' + ${venta.valor}"></span></td>
+                </tr>
+                <tr>
+                    <td><span th:text="${venta.direccion}"></span></td>
+                </tr>
+                <tr>
+                    <td><span th:text="${venta.localidad}"></span></td>
+                    <td><span th:text="'Zona:&nbsp;' + ${venta.zona}"></span></td>
+                    <td><span th:text="${venta.telefono}"></span></td>
+                </tr>
+                <tr>
+                    <td colspan="3">
+                        <img src="/images/cobranza.png" 
+                             alt="" 
+                             width="370px" 
+                             height="55px">
+                        </img>
+                    </td>
+                </tr>
+                <tr>
+                    <td><span th:text="${venta.fechaSuscripcion}"></span></td>
+                    <td><span th:text="${venta.vendedor}"></span></td>
+                    <td><span th:text="${venta.cobrador}"></span></td>
+                </tr>
+            </table>
+	</div>
+    </body>
+</html>

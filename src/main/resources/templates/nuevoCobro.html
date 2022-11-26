@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Gestion Bomberos</title>
+        <meta charset="UTF-8"></meta>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"></link>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" 
+                href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+                integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7"
+                crossorigin="anonymous"></link>
+        <link rel="stylesheet"
+                href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css"
+                integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r"
+                crossorigin="anonymous"></link>
+        <link rel="shortcut icon" type="image/x-icon" href="/images/logo_bomberos_ico.ico"></link>
+        <!-- DataBase -->
+        <script src="https://cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js"></script>
+        <link rel="stylesheet" type="text/css" 
+              href="https://cdn.datatables.net/1.10.11/css/jquery.dataTables.min.css"></link>
+        <!-- Javascript -->
+        <script src="/js/nuevoCobro.js"></script>
+        <link rel="stylesheet"
+                href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"></link>
+        <!--<script src="https://code.jquery.com/jquery-1.12.4.js"></script>-->
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    </head>
+    <body style="background-color: aliceblue;">
+        <header>
+            <nav class="navbar navbar-inverse">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="/">Gestion Bomberos</a>
+                    </div>
+                    <ul class="nav navbar-nav">
+                        <li><a href="/rifas">Rifas</a></li>
+                        <li><a href="/ventas">Ventas</a></li>
+                        <li class="active"><a href="/cobranza">Cobranzas</a></li>
+                        <li><a href="/reportes">Reportes</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+						<li class="dropdown">
+							<a class="dropdown-toggle" data-toggle="dropdown" href="#">Admin <span class="glyphicon glyphicon-user"></span></a>
+					        <ul class="dropdown-menu">
+								<li><a href="/configuracion"><span class="glyphicon glyphicon-cog"></span> Configuración</a></li>
+								<li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span> Cerrar sesión</a></li>
+					        </ul>
+						</li>
+				    </ul>
+                </div>
+            </nav>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div class="container-fluid">
+                        <h1 style="text-align: center;">Gestion Bomberos</h1>
+                    </div>
+                </div>
+            </div>
+	</header>
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <h4>Complete los siguientes datos:</h4>
+                <br></br>
+                <form id="formCobranza" action="" method="post" class="form">
+                    <div class="col-md-6" style="margin-left: 25%;">
+                        <div class="form-group col-md-4">
+                            <label>Numero de Rifa</label>
+                            <input type="text" class="form-control" 
+                                   th:value="${nroRifa}" name="nroRifa"
+                                   placeholder="Numero de Rifa" required="true" 
+                                   id="nroRifa">
+                            </input>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label>Cantidad de Cuotas</label>
+                            <select class="form-control" required="true"
+                                    th:value="${cantCuotas}" name="cantCuotas">
+                                <option value="-1">-1</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label>Nombre y Apellido</label>
+                            <label id="nomYApe" style="padding-top: 7px;"></label>
+                        </div>
+                        <div class="form-group" 
+                             style="margin-left: 43%;margin-top: 15%;">
+                            <input type="submit" class="btn btn-primary btn-lg"></input>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </body>
+</html>

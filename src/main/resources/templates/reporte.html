@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Gestion Bomberos</title>
+        <meta charset="UTF-8"></meta>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></link>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <!-- DataBase -->
+        <script src="https://cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js"></script>
+        <link rel="stylesheet" type="text/css" 
+              href="https://cdn.datatables.net/1.10.11/css/jquery.dataTables.min.css"></link>
+        <link rel="stylesheet" href="/css/reporte.css"></link>
+        <!-- Javascript -->
+        <link rel="stylesheet"
+                href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"></link>
+        <!--<script src="https://code.jquery.com/jquery-1.12.4.js"></script>-->
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    </head>
+    <body>
+        <div class="reporte">
+            <!--HEADER-->
+            <table class="header">
+                <tr>
+                    <td class="titulo">&nbsp;&nbsp;Planilla de Control</td>
+                    <td class="titulo" 
+                        style="
+                            font-size: 16px;
+                            padding-left: 195px;
+                            ">
+                        Jueves, 01 de Noviembre de 2018
+                    </td>
+                </tr>
+                <tr>
+                    <td class="titulo" colspan="2">&nbsp;&nbsp;Cobranza</td>
+                </tr>
+            </table>
+
+            <table id="titCob">
+                <tr>
+                    <td style="
+                            border: 1px solid black;
+                            padding-left: 0px;
+                        ">
+                        &nbsp;&nbsp;OSCAR&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;
+                    </td>
+                </tr>
+                <tr>
+                    <td style="border-bottom: 3px solid black; 
+                               padding-top: 5px;">
+                    </td>
+                </tr>
+            </table>
+            <!--BODY-->
+            <table class="body">
+                <td>
+                    <tr class="subtitulo">
+                        <td class="pad">Rifa</td>
+                        <td class="pad">Importe</td>
+                        <td class="pad">N°</td>
+                    </tr>
+                    <tr>
+                        <td>001</td>
+                        <td>$250,00</td>
+                        <td class="nroCuota">12</td>
+                    </tr>
+                </td>
+            </table>
+        </div>
+    </body>
+</html>

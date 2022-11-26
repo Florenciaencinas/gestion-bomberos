@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Gestion Bomberos</title>
+        <meta charset="UTF-8"></meta>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></link>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <!-- DataBase -->
+        <script src="https://cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js"></script>
+        <link rel="stylesheet" type="text/css" 
+              href="https://cdn.datatables.net/1.10.11/css/jquery.dataTables.min.css"></link>
+        <link rel="stylesheet" href="/css/reporte.css"></link>
+        <link rel="shortcut icon" type="image/x-icon" href="/images/logo_bomberos_ico.ico"></link>
+        <!-- Javascript -->
+        <link rel="stylesheet"
+                href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"></link>
+        <!--<script src="https://code.jquery.com/jquery-1.12.4.js"></script>-->
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    </head>
+    <body>
+        <div class="reporte">
+            
+            <!-- HOJA 1 -->
+            
+            <!--HEADER-->
+            <table class="header">
+                <tr>
+                    <td class="titulo"
+                        style="padding-left: 10px;">
+                        &nbsp;&nbsp;Planilla de Control
+                    </td>
+                    <td class="titulo" 
+                        style="text-align: right;
+                            padding-right: 20px;
+                            " th:text="${fechaFormateada}"> <!--font-size: 16px;-->
+                    </td>
+                </tr>
+                <tr>
+                    <td class="tituloDos" 
+                        colspan="2"
+                        style="padding-left: 10px;">&nbsp;&nbsp;Cobranza</td>
+                </tr>
+            </table>
+
+            <table id="titCob">
+                <tr>
+                    <td style="
+                            border: 1px solid black;
+                            padding-left: 0px;
+                        " th:text="'&nbsp;&nbsp;' + ${cobrador} + '&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'">
+                    </td>
+                </tr>
+                <tr>
+                    <td style="border-bottom: 3px solid black; 
+                               padding-top: 5px;">
+                    </td>
+                </tr>
+            </table>
+            <!--BODY-->
+            
+            <!--FILA 1-->
+            <table class="body">
+                <tr class="subtitulo">
+                    <td class="pad">Rifa</td>
+                    <td class="pad">Importe&nbsp;&nbsp;</td>
+                    <td class="pad">N°</td>
+                </tr>
+                <tr th:each="c : ${filaUno}" style="margin-left: 20px !important;">
+                    <td><span th:text="${c.rifa}"></span></td>
+                    <td><span th:text="'$' + ${c.valor} + ',00'"></span></td>
+                    <td class="nroCuota"><span th:text="${c.cuotasPagas}"></span></td>
+                </tr>
+            </table>
+            
+            <!--FILA 2-->
+            <table class="body" 
+                   style="margin-top: -1132px;
+                          margin-left: 252px;">
+                <tr class="subtitulo" style='color: white;'>
+                    <td class="pad">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                    <td class="pad">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                    <td class="pad">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                </tr>
+                <tr th:each="c : ${filaDos}">
+                    <td><span th:text="${c.rifa}"></span></td>
+                    <td><span th:text="'$' + ${c.valor} + ',00'"></span></td>
+                    <td class="nroCuota"><span th:text="${c.cuotasPagas}"></span></td>
+                </tr>
+            </table>
+            
+            <!--FILA 3-->
+            <table class="body" 
+                   style="margin-top: -1132px;
+                          margin-left: 455px;">
+                <tr class="subtitulo" style='color: white;'>
+                    <td class="pad">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                    <td class="pad">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                    <td class="pad">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                </tr>
+                <tr th:each="c : ${filaTres}">
+                    <td><span th:text="${c.rifa}"></span></td>
+                    <td><span th:text="'$' + ${c.valor} + ',00'"></span></td>
+                    <td class="nroCuota"><span th:text="${c.cuotasPagas}"></span></td>
+                </tr>
+            </table>
+            
+            <!--FILA 4-->
+            <table class="body" 
+                   style="margin-top: -1132px;
+                          margin-left: 661px;">
+                <tr class="subtitulo" style='color: white;'>
+                    <td class="pad">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                    <td class="pad">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                    <td class="pad">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                </tr>
+                <tr th:each="c : ${filaCuatro}">
+                    <td><span th:text="${c.rifa}"></span></td>
+                    <td><span th:text="'$' + ${c.valor} + ',00'"></span></td>
+                    <td class="nroCuota"><span th:text="${c.cuotasPagas}"></span></td>
+                </tr>
+            </table>
+            
+            <div th:if="${cantHojas == 1}">
+                <br></br>
+                <br></br>
+                <br></br>
+                <br></br>
+                <br></br>
+                <p style="margin-left: 18px; position: absolute; top: 1225px" 
+                   th:text="'Cantidad: ' + ${cantidad}"></p>
+                <p style="margin-left: 18px; position: absolute; top: 1255px" 
+                   th:text="'Total: $' + ${total} + ',00'"></p>
+                <br></br>
+                <br></br>
+                <br></br>
+            </div>
+            
+            <div th:if="${cantHojas != 1}">
+				<br></br>
+                <br></br>
+                <br></br>
+                <br></br>
+                <br></br>
+                <br></br>
+                <br></br>
+            </div>
+            
+            <div style="background-color: gray; position: absolute; top: 1315px">
+                <p style="font-weight: bold;
+                          background-color: gray;
+                          padding-left: 42%;
+                          color: white;
+                          width: 829px;
+                          margin-bottom: 0px;"
+                th:text="'P&aacute;gina 1 de ' + ${cantHojas}"></p> <!--font-size: 15px; -->
+            </div>
+            
+        </div>
+        
+        <div th:if="${hojaDos == true}" class="reporte">
+            <!-- HOJA 2 -->
+            
+            <!--HEADER-->
+            <table class="header">
+                <tr>
+                    <td class="titulo"
+                        style="padding-left: 10px;">
+                        &nbsp;&nbsp;Planilla de Control
+                    </td>
+                    <td class="titulo" 
+                        style="text-align: right;
+                            padding-right: 20px;
+                            " th:text="${fechaFormateada}"> <!--font-size: 16px;-->
+                    </td>
+                </tr>
+                <tr>
+                    <td class="tituloDos" 
+                        colspan="2"
+                        style="padding-left: 10px;">&nbsp;&nbsp;Cobranza</td>
+                </tr>
+            </table>
+
+            <table id="titCob">
+                <tr>
+                    <td style="
+                            border: 1px solid black;
+                            padding-left: 0px;
+                        " th:text="'&nbsp;&nbsp;' + ${cobrador} + '&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'">
+                    </td>
+                </tr>
+                <tr>
+                    <td style="border-bottom: 3px solid black; 
+                               padding-top: 5px;">
+                    </td>
+                </tr>
+            </table>
+            <!--BODY-->
+            
+            <!--FILA 5-->
+            <table class="body">
+                <tr class="subtitulo">
+                    <td class="pad">Rifa</td>
+                    <td class="pad">Importe&nbsp;&nbsp;</td>
+                    <td class="pad">N°</td>
+                </tr>
+                <tr th:each="c : ${filaCinco}" style="margin-left: 20px !important;">
+                    <td><span th:text="${c.rifa}"></span></td>
+                    <td><span th:text="'$' + ${c.valor} + ',00'"></span></td>
+                    <td class="nroCuota"><span th:text="${c.cuotasPagas}"></span></td>
+                </tr>
+            </table>
+            
+            <!--FILA 6-->
+            <table class="body" 
+                   style="margin-top: -1132px;
+                          margin-left: 252px;">
+                <tr class="subtitulo" style='color: white;'>
+                    <td class="pad">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                    <td class="pad">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                    <td class="pad">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                </tr>
+                <tr th:each="c : ${filaSeis}">
+                    <td><span th:text="${c.rifa}"></span></td>
+                    <td><span th:text="'$' + ${c.valor} + ',00'"></span></td>
+                    <td class="nroCuota"><span th:text="${c.cuotasPagas}"></span></td>
+                </tr>
+            </table>
+            
+            <!--FILA 7-->
+            <table class="body" 
+                   style="margin-top: -1132px;
+                          margin-left: 455px;">
+                <tr class="subtitulo" style='color: white;'>
+                    <td class="pad">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                    <td class="pad">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                    <td class="pad">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                </tr>
+                <tr th:each="c : ${filaSiete}">
+                    <td><span th:text="${c.rifa}"></span></td>
+                    <td><span th:text="'$' + ${c.valor} + ',00'"></span></td>
+                    <td class="nroCuota"><span th:text="${c.cuotasPagas}"></span></td>
+                </tr>
+            </table>
+            
+            <!--FILA 8-->
+            <table class="body" 
+                   style="margin-top: -1132px;
+                          margin-left: 661px;">
+                <tr class="subtitulo" style='color: white;'>
+                    <td class="pad">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                    <td class="pad">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                    <td class="pad">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                </tr>
+                <tr th:each="c : ${filaOcho}">
+                    <td><span th:text="${c.rifa}"></span></td>
+                    <td><span th:text="'$' + ${c.valor} + ',00'"></span></td>
+                    <td class="nroCuota"><span th:text="${c.cuotasPagas}"></span></td>
+                </tr>
+            </table>
+            
+            <div th:if="${cantHojas == 2}">
+                <br></br>
+                <br></br>
+                <br></br>
+                <br></br>
+                <br></br>
+                <p style="margin-left: 18px; position: absolute; top: 1225px" 
+                   th:text="'Cantidad: ' + ${cantidad}"></p>
+                <p style="margin-left: 18px; position: absolute; top: 1255px" 
+                   th:text="'Total: $' + ${total} + ',00'"></p>
+                <br></br>
+                <br></br>
+                <br></br>
+            </div>
+            
+            <div th:if="${cantHojas != 2}">
+                <br></br>
+                <br></br>
+                <br></br>
+                <br></br>
+                <br></br>
+                <br></br>
+                <br></br>
+            </div>
+            
+            <div style="background-color: gray; position: absolute; top: 1315px">
+                <p style="font-weight: bold;
+                          background-color: gray;
+                          padding-left: 42%;
+                          color: white;
+                          width: 829px;
+                          margin-bottom: 0px;"
+                th:text="'P&aacute;gina 2 de ' + ${cantHojas}"></p> <!--font-size: 15px; -->
+            </div>
+        </div>
+        
+        <div th:if="${hojaTres == true}" class="reporte">
+            <!-- HOJA 3 -->
+            
+            <!--HEADER-->
+            <table class="header">
+                <tr>
+                    <td class="titulo"
+                        style="padding-left: 10px;">
+                        &nbsp;&nbsp;Planilla de Control
+                    </td>
+                    <td class="titulo" 
+                        style="text-align: right;
+                            padding-right: 20px;
+                            " th:text="${fechaFormateada}"> <!--font-size: 16px;-->
+                    </td>
+                </tr>
+                <tr>
+                    <td class="tituloDos" 
+                        colspan="2"
+                        style="padding-left: 10px;">&nbsp;&nbsp;Cobranza</td>
+                </tr>
+            </table>
+
+            <table id="titCob">
+                <tr>
+                    <td style="
+                            border: 1px solid black;
+                            padding-left: 0px;
+                        " th:text="'&nbsp;&nbsp;' + ${cobrador} + '&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'">
+                    </td>
+                </tr>
+                <tr>
+                    <td style="border-bottom: 3px solid black; 
+                               padding-top: 5px;">
+                    </td>
+                </tr>
+            </table>
+            <!--BODY-->
+            
+            <!--FILA 9-->
+            <table class="body">
+                <tr class="subtitulo">
+                    <td class="pad">Rifa</td>
+                    <td class="pad">Importe&nbsp;&nbsp;</td>
+                    <td class="pad">N°</td>
+                </tr>
+                <tr th:each="c : ${filaNueve}" style="margin-left: 20px !important;">
+                    <td><span th:text="${c.rifa}"></span></td>
+                    <td><span th:text="'$' + ${c.valor} + ',00'"></span></td>
+                    <td class="nroCuota"><span th:text="${c.cuotasPagas}"></span></td>
+                </tr>
+            </table>
+            
+            <!--FILA 10-->
+            <table class="body" 
+                   style="margin-top: -1132px;
+                          margin-left: 252px;">
+                <tr class="subtitulo" style='color: white;'>
+                    <td class="pad">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                    <td class="pad">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                    <td class="pad">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                </tr>
+                <tr th:each="c : ${filaDiez}">
+                    <td><span th:text="${c.rifa}"></span></td>
+                    <td><span th:text="'$' + ${c.valor} + ',00'"></span></td>
+                    <td class="nroCuota"><span th:text="${c.cuotasPagas}"></span></td>
+                </tr>
+            </table>
+            
+            <!--FILA 11-->
+            <table class="body" 
+                   style="margin-top: -1132px;
+                          margin-left: 455px;">
+                <tr class="subtitulo" style='color: white;'>
+                    <td class="pad">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                    <td class="pad">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                    <td class="pad">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                </tr>
+                <tr th:each="c : ${filaOnce}">
+                    <td><span th:text="${c.rifa}"></span></td>
+                    <td><span th:text="'$' + ${c.valor} + ',00'"></span></td>
+                    <td class="nroCuota"><span th:text="${c.cuotasPagas}"></span></td>
+                </tr>
+            </table>
+            
+            <!--FILA 12-->
+            <table class="body" 
+                   style="margin-top: -1132px;
+                          margin-left: 661px;">
+                <tr class="subtitulo" style='color: white;'>
+                    <td class="pad">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                    <td class="pad">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                    <td class="pad">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                </tr>
+                <tr th:each="c : ${filaDoce}">
+                    <td><span th:text="${c.rifa}"></span></td>
+                    <td><span th:text="'$' + ${c.valor} + ',00'"></span></td>
+                    <td class="nroCuota"><span th:text="${c.cuotasPagas}"></span></td>
+                </tr>
+            </table>
+            
+            <div th:if="${cantHojas == 3}">
+                <br></br>
+                <br></br>
+                <br></br>
+                <br></br>
+                <br></br>
+                <p style="margin-left: 18px; position: absolute; top: 1245px" 
+                   th:text="'Cantidad: ' + ${cantidad}"></p>
+                <p style="margin-left: 18px; position: absolute; top: 1275px" 
+                   th:text="'Total: $' + ${total} + ',00'"></p>
+                <br></br>
+                <br></br>
+                <br></br>
+            </div>
+            
+            <div th:if="${cantHojas != 3}">
+                <br></br>
+                <br></br>
+                <br></br>
+                <br></br>
+                <br></br>
+                <br></br>
+                <br></br>
+            </div>
+            
+            <div style="background-color: gray; position: absolute; top: 1315px">
+                <p style="font-weight: bold;
+                          background-color: gray;
+                          padding-left: 42%;
+                          color: white;
+                          width: 829px;
+                          margin-bottom: 0px;"
+                th:text="'P&aacute;gina 3 de ' + ${cantHojas}"></p> <!--font-size: 15px; -->
+            </div>
+        </div>
+        <div th:if="${hojaCuatro == true}" class="reporte">
+            <!-- HOJA 4 -->
+            
+            <!--HEADER-->
+            <table class="header">
+                <tr>
+                    <td class="titulo"
+                        style="padding-left: 10px;">
+                        &nbsp;&nbsp;Planilla de Control
+                    </td>
+                    <td class="titulo" 
+                        style="text-align: right;
+                            padding-right: 20px;
+                            " th:text="${fechaFormateada}"> <!--font-size: 16px;-->
+                    </td>
+                </tr>
+                <tr>
+                    <td class="tituloDos" 
+                        colspan="2"
+                        style="padding-left: 10px;">&nbsp;&nbsp;Cobranza</td>
+                </tr>
+            </table>
+
+            <table id="titCob">
+                <tr>
+                    <td style="
+                            border: 1px solid black;
+                            padding-left: 0px;
+                        " th:text="'&nbsp;&nbsp;' + ${cobrador} + '&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'">
+                    </td>
+                </tr>
+                <tr>
+                    <td style="border-bottom: 3px solid black; 
+                               padding-top: 5px;">
+                    </td>
+                </tr>
+            </table>
+            <!--BODY-->
+            
+            <!--FILA 13-->
+            <table class="body">
+                <tr class="subtitulo">
+                    <td class="pad">Rifa</td>
+                    <td class="pad">Importe&nbsp;&nbsp;</td>
+                    <td class="pad">N°</td>
+                </tr>
+                <tr th:each="c : ${filaTrece}" style="margin-left: 20px !important;">
+                    <td><span th:text="${c.rifa}"></span></td>
+                    <td><span th:text="'$' + ${c.valor} + ',00'"></span></td>
+                    <td class="nroCuota"><span th:text="${c.cuotasPagas}"></span></td>
+                </tr>
+            </table>
+            
+            <!--FILA 14-->
+            <table class="body" 
+                   style="margin-top: -1132px;
+                          margin-left: 252px;">
+                <tr class="subtitulo" style='color: white;'>
+                    <td class="pad">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                    <td class="pad">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                    <td class="pad">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                </tr>
+                <tr th:each="c : ${filaCatorce}">
+                    <td><span th:text="${c.rifa}"></span></td>
+                    <td><span th:text="'$' + ${c.valor} + ',00'"></span></td>
+                    <td class="nroCuota"><span th:text="${c.cuotasPagas}"></span></td>
+                </tr>
+            </table>
+            
+            <!--FILA 15-->
+            <table class="body" 
+                   style="margin-top: -1132px;
+                          margin-left: 455px;">
+                <tr class="subtitulo" style='color: white;'>
+                    <td class="pad">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                    <td class="pad">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                    <td class="pad">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                </tr>
+                <tr th:each="c : ${filaQuince}">
+                    <td><span th:text="${c.rifa}"></span></td>
+                    <td><span th:text="'$' + ${c.valor} + ',00'"></span></td>
+                    <td class="nroCuota"><span th:text="${c.cuotasPagas}"></span></td>
+                </tr>
+            </table>
+            
+            <!--FILA 16-->
+            <table class="body" 
+                   style="margin-top: -1132px;
+                          margin-left: 661px;">
+                <tr class="subtitulo" style='color: white;'>
+                    <td class="pad">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                    <td class="pad">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                    <td class="pad">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                </tr>
+                <tr th:each="c : ${filaDiezYSeis}">
+                    <td><span th:text="${c.rifa}"></span></td>
+                    <td><span th:text="'$' + ${c.valor} + ',00'"></span></td>
+                    <td class="nroCuota"><span th:text="${c.cuotasPagas}"></span></td>
+                </tr>
+            </table>
+            
+            <div th:if="${cantHojas == 4}">
+                <br></br>
+                <br></br>
+                <br></br>
+                <br></br>
+                <br></br>
+                <p style="margin-left: 18px; position: absolute; top: 1225px" 
+                   th:text="'Cantidad: ' + ${cantidad}"></p>
+                <p style="margin-left: 18px; position: absolute; top: 1255px" 
+                   th:text="'Total: $' + ${total} + ',00'"></p>
+                <br></br>
+                <br></br>
+                <br></br>
+            </div>
+            
+            <div th:if="${cantHojas != 4}">
+                <br></br>
+                <br></br>
+                <br></br>
+                <br></br>
+                <br></br>
+                <br></br>
+                <br></br>
+            </div>
+            
+            <div style="background-color: gray; position: absolute; top: 1315px">
+                <p style="font-weight: bold;
+                          background-color: gray;
+                          padding-left: 42%;
+                          color: white;
+                          width: 829px;
+                          margin-bottom: 0px;"
+                th:text="'P&aacute;gina 4 de ' + ${cantHojas}"></p><!--font-size: 15px; -->
+            </div>
+        </div>
+    </body>
+</html>
