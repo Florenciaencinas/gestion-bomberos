@@ -5,11 +5,16 @@
  */
 package dao;
 
-import java.util.ArrayList;
 import model.CompradorVenta;
-import model.Rifa;
+
+import java.util.Collections;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 
 /**
@@ -45,8 +50,6 @@ public class DAOCobranza {
     }
     
     public void modificarCobranza(String nroRifa, String cantCuotas) {
-        SqlRowSet cobranza;
-        
         if(cantCuotas.equals("-1")) {
         	this.jdbcTemplate.update(
                     "UPDATE comprador SET cuotasPagas = cuotasPagas + ? "
@@ -57,4 +60,32 @@ public class DAOCobranza {
 	                + "where rifa = ? ;",cantCuotas, cantCuotas, nroRifa);
         }
     }
+    
+    public void modificarCobranza(List<String> rifas, String cantCuotas) {
+    	
+    	String inClause = buildINClause(rifas);
+    	if(cantCuotas.equals("-1")) {
+        	this.jdbcTemplate.update(
+                    "UPDATE comprador SET cuotasPagas = cuotasPagas + ? "
+                    + "where rifa " + inClause, cantCuotas);
+        } else {
+	        this.jdbcTemplate.update(
+	                "UPDATE comprador SET cuotasPagas = cuotasPagas + ?, cuotasPorMes = ? "
+	                + "where rifa " + inClause, cantCuotas, cantCuotas);
+        }
+    }
+    
+    private String buildINClause(List<String> rifas) {
+    	String inClause = "IN (";
+    	for(int i=0;i<rifas.size();i++) {
+    		if(i==rifas.size()-1) {
+    			inClause+="'" + rifas.get(i) + "'";
+    		} else {
+    			inClause+="'" + rifas.get(i) + "',";
+    		}
+    	}
+    	inClause+=") ;";
+    	return inClause;
+    }
+     
 }

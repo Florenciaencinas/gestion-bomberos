@@ -9,8 +9,13 @@ import dao.DAOReportes;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import model.CompradorVenta;
+import model.CompradoresRifas;
+import model.Rifa;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
@@ -106,10 +111,13 @@ public class ReportesController {
         
     	// Se obtiene la lista de cobranzas completa
     	ArrayList<CompradorVenta> listaDeCobranza = null;
+    	CompradoresRifas compradoresRifas = null;
     	if(seleccionarReporte.equals("porCobrador")) {
-    		listaDeCobranza = daoReportes.getCobranzaPorCobrador(cobrador);
+    		compradoresRifas = daoReportes.getCobranzaPorCobrador(cobrador);
+    		listaDeCobranza = (ArrayList<CompradorVenta>) compradoresRifas.getCompradorVentaList();
     	} else if(seleccionarReporte.equals("porZona")) {
-    		listaDeCobranza = daoReportes.getCobranzaPorZona(zona);
+    		compradoresRifas = daoReportes.getCobranzaPorZona(zona);
+    		listaDeCobranza = (ArrayList<CompradorVenta>) compradoresRifas.getCompradorVentaList();
     	}
     	
         if(tipoCobranza.equals("mensual")) calcularCuotasPagas(listaDeCobranza);
@@ -170,7 +178,8 @@ public class ReportesController {
         template.addAttribute("hojaTres", hojaTres);
         template.addAttribute("hojaCuatro", hojaCuatro);
         
-        template.addAttribute("cantidad", listaDeCobranza.size());
+        template.addAttribute("cantidadDeNumeros", calcularCantidadDeNumerosPor(compradoresRifas.getRifasList()));
+        template.addAttribute("cantidadDeRifas", listaDeCobranza.size());
         template.addAttribute("total", calcularTotal(listaDeCobranza));
         
         template.addAttribute("cobrador", cobrador.toUpperCase());
@@ -181,6 +190,14 @@ public class ReportesController {
     	} else {
     		return "reporteCobranzaPorZona";
     	}
+    }
+    
+    private Integer calcularCantidadDeNumerosPor(List<Rifa> listaDeRifas) {
+    	Integer cantidad = 0;
+    	for(Rifa r : listaDeRifas) {
+    		cantidad = cantidad + r.getCabezal();
+    	}
+    	return cantidad;
     }
     
     private void calcularCuotasPagas(ArrayList<CompradorVenta> listaDeCobranza) {

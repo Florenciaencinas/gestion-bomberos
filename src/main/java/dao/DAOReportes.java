@@ -8,6 +8,9 @@ package dao;
 import java.util.ArrayList;
 import java.util.Date;
 import model.CompradorVenta;
+import model.CompradoresRifas;
+import model.Rifa;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
@@ -24,10 +27,10 @@ public class DAOReportes {
         this.jdbcTemplate = jdbcTemplate;
     }
     
-    public ArrayList<CompradorVenta> getCobranzaPorCobrador(String cobrador) {
+    public CompradoresRifas getCobranzaPorCobrador(String cobrador) {
         SqlRowSet cobranza = jdbcTemplate.queryForRowSet(
             "SELECT DISTINCT " +
-            "   c.rifa, r.valor, c.cuotasPorMes, " +
+            "   c.rifa, r.valor, r.cabezal, c.cuotasPorMes, " +
             "		CASE c.estado " +
             "			WHEN 'BAJA' THEN 'B' " +
             "			WHEN 'TERMINADA' THEN 'T' " +
@@ -44,27 +47,37 @@ public class DAOReportes {
         );
 
         ArrayList<CompradorVenta> listaDeCobranza = new ArrayList<CompradorVenta>();
+        ArrayList<Rifa> listaDeRifas = new ArrayList<Rifa>();
         while (cobranza.next()) {
-            String rifa = cobranza.getString("rifa");
+            String numRifa = cobranza.getString("rifa");
             Integer valor = cobranza.getInt("valor");
             String cuotasPagas = cobranza.getString("cuotasPagas");
             Integer cuotasPorMes = cobranza.getInt("cuotasPorMes");
+            Integer cabezal = cobranza.getInt("cabezal");
             
             CompradorVenta comprador = new CompradorVenta();
-            comprador.setRifa(rifa);
+            comprador.setRifa(numRifa);
             comprador.setValor(valor);
             comprador.setCuotasPagas(cuotasPagas);
             comprador.setCuotasPorMes(cuotasPorMes);
             
+            Rifa rifa = new Rifa();
+            rifa.setCabezal(cabezal);
+            
             listaDeCobranza.add(comprador);
+            listaDeRifas.add(rifa);
         }
-        return listaDeCobranza;
+        
+        CompradoresRifas compradoresRifas = new CompradoresRifas();
+        compradoresRifas.setCompradorVentaList(listaDeCobranza);
+        compradoresRifas.setRifasList(listaDeRifas);
+        return compradoresRifas;
     }
     
-    public ArrayList<CompradorVenta> getCobranzaPorZona(String zona) {
+    public CompradoresRifas getCobranzaPorZona(String zona) {
         SqlRowSet cobranza = jdbcTemplate.queryForRowSet(
             "SELECT DISTINCT " +
-            "   c.rifa, r.valor, c.cuotasPorMes, " +
+            "   c.rifa, r.valor, r.cabezal, c.cuotasPorMes, " +
             "		CASE c.estado " +
             "			WHEN 'BAJA' THEN 'B' " +
             "			WHEN 'TERMINADA' THEN 'T' " +
@@ -81,21 +94,31 @@ public class DAOReportes {
         );
 
         ArrayList<CompradorVenta> listaDeCobranza = new ArrayList<CompradorVenta>();
+        ArrayList<Rifa> listaDeRifas = new ArrayList<Rifa>();
         while (cobranza.next()) {
-            String rifa = cobranza.getString("rifa");
+            String numRifa = cobranza.getString("rifa");
             Integer valor = cobranza.getInt("valor");
             String cuotasPagas = cobranza.getString("cuotasPagas");
             Integer cuotasPorMes = cobranza.getInt("cuotasPorMes");
+            Integer cabezal = cobranza.getInt("cabezal");
             
             CompradorVenta comprador = new CompradorVenta();
-            comprador.setRifa(rifa);
+            comprador.setRifa(numRifa);
             comprador.setValor(valor);
             comprador.setCuotasPagas(cuotasPagas);
             comprador.setCuotasPorMes(cuotasPorMes);
             
+            Rifa rifa = new Rifa();
+            rifa.setCabezal(cabezal);
+            
             listaDeCobranza.add(comprador);
+            listaDeRifas.add(rifa);
         }
-        return listaDeCobranza;
+        
+        CompradoresRifas compradoresRifas = new CompradoresRifas();
+        compradoresRifas.setCompradorVentaList(listaDeCobranza);
+        compradoresRifas.setRifasList(listaDeRifas);
+        return compradoresRifas;
     }
     
     public ArrayList<CompradorVenta> getReportePorVendedor(String vendedor) {

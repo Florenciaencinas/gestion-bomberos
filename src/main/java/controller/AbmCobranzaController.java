@@ -6,14 +6,25 @@
 package controller;
 
 import dao.DAOCobranza;
+import dao.DAORifas;
+import dao.DAOVentas;
+import dto.CobrarRifasDTO;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import model.CompradorVenta;
+import model.Rifa;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 /**
@@ -26,11 +37,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class AbmCobranzaController {
     private final JdbcTemplate jdbcTemplate;
     private final DAOCobranza daoCobranza;
+    private final DAOVentas daoVentas;
     
     @Autowired
     public AbmCobranzaController(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
         daoCobranza = new DAOCobranza(jdbcTemplate);
+        daoVentas = new DAOVentas(jdbcTemplate);
     }
     
     @RequestMapping(value = "")
@@ -45,6 +58,13 @@ public class AbmCobranzaController {
         return "nuevoCobro";
     }
     
+    @RequestMapping(value = "/nuevo/cobro-multiple")
+    public String nuevoCobroMultiple(Model template) {
+        ArrayList<CompradorVenta> compradores = daoVentas.getAllVentas();
+        template.addAttribute("ventas", compradores);
+        return "nuevoCobroMultiple";
+    }
+    
     @RequestMapping(value = "/modificar/{rifa}")
     public String modificarVenta(Model template,
             @PathVariable(value = "rifa") String rifa,
@@ -57,6 +77,20 @@ public class AbmCobranzaController {
         daoCobranza.modificarCobranza(rifa, cantCuotas);
         
         return "redirect:" + "/cobranza/nuevo";
+    }
+    
+    @RequestMapping(
+		value = "/modificar/rifas", 
+		method = RequestMethod.POST,
+		consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE}
+    )
+    public String modificarRifas(
+    		@RequestParam(value = "cantCuotas") String cantCuotas,
+    		@RequestParam(value = "rifasSeleccionadas") List<String> rifasSeleccionadas) {
+
+        daoCobranza.modificarCobranza(rifasSeleccionadas, cantCuotas);
+        
+        return "redirect:" + "/cobranza/nuevo/cobro-multiple";
     }
     
 }

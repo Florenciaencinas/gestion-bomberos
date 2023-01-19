@@ -30,23 +30,26 @@ and open the template in the editor.
                 href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"></link>
         <!--<script src="https://code.jquery.com/jquery-1.12.4.js"></script>-->
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+        <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
     </head>
-    <body style="background-color: aliceblue;">
+    <body style="background-color: white;">
         <header>
             <nav class="navbar navbar-inverse">
-                <div class="container-fluid">
+                <div style="background-color:  black;" class="container-fluid">
                     <div class="navbar-header">
-                        <a class="navbar-brand" href="/">Gestion Bomberos</a>
+                        <a style="color:white" class="navbar-brand" href="/">Gestion Bomberos</a>
                     </div>
                     <ul class="nav navbar-nav">
-                        <li><a href="/rifas">Rifas</a></li>
-                        <li><a href="/ventas">Ventas</a></li>
-                        <li><a href="/cobranza">Cobranzas</a></li>
-                        <li class="active"><a href="/reportes">Reportes</a></li>
+                        <li><a style="color:white" href="/rifas">Rifas</a></li>
+                        <li><a style="color:white" href="/ventas">Ventas</a></li>
+                        <li><a style="color:white" href="/cobranza">Cobranzas</a></li>
+                        <li class="active"><a style="color:white" href="/reportes">Reportes</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
 						<li class="dropdown">
-							<a class="dropdown-toggle" data-toggle="dropdown" href="#">Admin <span class="glyphicon glyphicon-user"></span></a>
+							<a style="color:white" class="dropdown-toggle" data-toggle="dropdown" href="#">Admin <span class="glyphicon glyphicon-user"></span></a>
 					        <ul class="dropdown-menu">
 								<li><a href="/configuracion"><span class="glyphicon glyphicon-cog"></span> Configuración</a></li>
 								<li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span> Cerrar sesión</a></li>
@@ -55,17 +58,11 @@ and open the template in the editor.
 				    </ul>
                 </div>
             </nav>
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <div class="container-fluid">
-                        <h1 style="text-align: center;">Gestion Bomberos</h1>
-                    </div>
-                </div>
-            </div>
-	</header>
-        <div class="panel panel-default">
-            <div class="panel-body">
-                <h4>Complete los siguientes datos:</h4>
+		</header>
+		<img style="display: block; margin-left: auto; margin-right: auto;" alt="logo" src="/images/logo_home.jpg" width="441px" height="115px"></img>
+        <div style="border-color:white;box-shadow: 0 0 0;" class="panel panel-default">
+            <div class="panel-body" style="padding:0px;">
+                <h4 style="padding-left:15px;">Complete los siguientes datos:</h4>
                 <br></br>
                 <form action="" method="post" class="form">
                     <div class="col-md-6" style="margin-left: 25%;">
@@ -128,12 +125,39 @@ and open the template in the editor.
                             </input>
                         </div>
                         <div class="form-group" 
-                             style="margin-left: 45%;margin-top: 50%;">
-                            <input type="submit" class="btn btn-primary btn-lg"></input>
+                             style="margin-left: 25%;margin-top: 45%;">
+                            <input style="width: 150px;height: 55px; color:white; background-color: #cb0b0d" type="submit" class="btn-lg"></input>
                         </div>
                     </div>
                 </form>
             </div>
         </div>
+        <footer style="position: fixed; left: 0; bottom: 0; width: 100%; background-color: black; color: white; text-align: center; padding:15px 0px 0px 0px;">
+            <div class="row">
+            	<div class="col-sm-2">
+            		<img style="padding-bottom: 12px;" alt="logo" src="/images/logo_home.jpg" width="220px" height="57px"></img>
+            	</div>
+            	<div class="col-sm-2">
+            		<i style='font-size:24px' class='far'>&#xf1f9;</i>
+            		<p>Copyright 2022</p>
+            	</div>
+            	<div class="col-sm-2">
+            		<i style='font-size:24px' class='fas'>&#xf121;</i>
+            		<p>Abel Alejandro Guillen</p>
+            	</div>
+            	<div class="col-sm-2">
+            		<i class="material-icons">&#xe0be;</i>
+            		<p>abel.guillen@hotmail.com</p>
+            	</div>
+            	<div class="col-sm-2">
+            		<i style='font-size:24px' class='fab'>&#xf08c;</i>
+            		<p>Síguenos en <a href="https://www.linkedin.com/in/abel-guillen-dev">LinkedIn</a></p>
+            	</div>
+            	<div class="col-sm-2"></div>
+            </div>
+<!--             <div class="row"> -->
+<!--             	<img style="display: block; margin-left: auto; margin-right: auto; padding-top:10px;" alt="logo" src="/images/logo_home.jpg" width="220px" height="57px"></img> -->
+<!--             </div> -->
+         </footer>
     </body>
 </html>

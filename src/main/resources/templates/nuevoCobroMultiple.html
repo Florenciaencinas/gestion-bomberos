@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Gestion Bomberos</title>
+        <meta charset="UTF-8"></meta>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+        
+        <!-- Icono -->
+        <link rel="shortcut icon" type="image/x-icon" href="/images/logo_bomberos_ico.ico"></link>
+        
+        <!-- Jquery -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        
+        <!-- Bootstrap -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"></link>
+		<!-- Optional theme -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous"></link>
+		<!-- Latest compiled and minified JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+		
+		<!-- Javascript -->
+<!--         <script src="/js/modificarRifa.js"></script> -->
+        
+        <!-- DataTables -->
+        <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css" />
+		<script src="//cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+		<script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+        <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+    </head>
+    <script>
+	$(document).ready(function () {		
+		let checkedIds = [];
+		
+		$(document).ready(function() {
+		    $('#dtVentas').DataTable({
+		    	'columnDefs': [
+		            {
+		               'targets': 0,
+		               'checkboxes': {
+		                  'selectRow': true
+		               }
+		            }
+		         ],
+		         'select': {
+		            'style': 'multi'
+		         },
+		         'order': [1, 'asc']
+		    });
+		} );
+		
+	    $("tbody tr").mouseover(function() {
+	        $(this).css("cursor", "pointer");
+	        if ($(this).hasClass("visto")) {
+	                $(this).removeClass("visto");
+	        } else {
+	                $(this).addClass("visto");
+	        }
+	    });
+	    $("tbody tr").mouseout(function() {
+	        $(this).css("cursor", "pointer");
+	        if ($(this).hasClass("visto")) {
+				$(this).removeClass("visto");
+	        }
+	    });
+		
+		$("input[type='checkbox']").change(function() {
+			var id = $('tr.visto span#idCheckSpan').text();
+		    if(this.checked) {
+		    	checkedIds.push(id);
+		    	console.log(checkedIds);
+		    } else {
+		    	let pos = checkedIds.indexOf(id);
+		    	let elementoEliminado = checkedIds.splice(pos, 1);
+		    	console.log(checkedIds);
+		    }
+		});
+		
+    });
+    </script>
+    <body style="background-color: white;">
+        <header>
+            <nav class="navbar navbar-inverse">
+                <div style="background-color:black;" class="container-fluid">
+                    <div class="navbar-header">
+                        <a style="color:white" class="navbar-brand" href="/">Gestion Bomberos</a>
+                    </div>
+                    <ul class="nav navbar-nav">
+                        <li><a style="color:white" href="/rifas">Rifas</a></li>
+                        <li><a style="color:white" href="/ventas">Ventas</a></li>
+                        <li class="active"><a style="color:white" href="/cobranza">Cobranzas</a></li>
+                        <li><a style="color:white" href="/reportes">Reportes</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+						<li class="dropdown">
+							<a style="color:white" class="dropdown-toggle" data-toggle="dropdown" href="#">Admin <span class="glyphicon glyphicon-user"></span></a>
+					        <ul class="dropdown-menu">
+								<li><a href="/configuracion"><span class="glyphicon glyphicon-cog"></span> Configuración</a></li>
+								<li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span> Cerrar sesión</a></li>
+					        </ul>
+						</li>
+				    </ul>
+                </div>
+            </nav>
+		</header>
+		<img style="display: block; margin-left: auto; margin-right: auto;" alt="logo" src="/images/logo_home.jpg" width="441px" height="115px"></img>
+        <div style="border-color:white;box-shadow: 0 0 0;" class="panel panel-default">
+            <div class="panel-body" style="padding-bottom:75px;">
+                <div class="container-fluid">
+                
+                	<form action="/cobranza/modificar/rifas" method="post">
+	                	<div class="form-group">
+							<label for="usr">Cuotas a cobrar:</label>
+							<div class="row">
+								<div class="form-group col-md-3">
+									<input value="1" name="cantCuotas" type="number" 
+									class="form-control" id="cantCuotasACobrar" required="required">
+								</div>
+								<div class="form-group col-md-3">
+			 						<input id="cobrarButton" style="width: 150px;height: 55px; color:white; 
+			 						background-color: #cb0b0d" type="submit" class="btn-lg"></input>
+								</div>
+							</div>
+						</div>
+						
+	                    <table id="dtVentas" class="table" 
+	                           cellspacing="0" width="100%">
+	                        <thead>
+	                            <tr>
+	                            	<th><span class="glyphicon glyphicon-check"></span></th>
+	                                <th>RIFA</th>
+	                                <th>CUOTAS PAGAS</th>
+	                                <th>FECHA DE SUSCRIPCION</th>
+	                                <th>ESTADO</th>
+	                                <th>NOMBRE</th>
+	                                <th>APELLIDO</th>
+	                                <th>DIRECCION</th>
+	                                <th>TELEFONO</th>
+	                                <th>COBRADOR</th>
+	                                <th>VENDEDOR</th>
+	                                <th>ZONA</th>
+	                            </tr>
+	                        </thead>
+	                        <tbody>
+	                            <tr class="ventas" th:each="v : ${ventas}">
+	                            	<td>
+	                            		<span id="idCheckSpan" style="display:none;" th:text="${v.rifa}"></span>
+	                            		<input type="checkbox" th:value="${v.rifa}" 
+	                            		name="rifasSeleccionadas" class="custom-control-input" id="idCheck">
+	                            	</td>
+	                                <td><span th:text="${v.rifa}"></span></td>
+	                                <td><span th:text="${v.cantCuotas}"></span></td>
+	                                <td><span th:text="${v.fechaSuscripcion}"></span></td>
+	                                <td><span th:text="${v.estado}"></span></td>
+	                                <td><span th:text="${v.nombre}"></span></td>
+	                                <td><span th:text="${v.apellido}"></span></td>
+	                                <td><span th:text="${v.direccion}"></span></td>
+	                                <td><span th:text="${v.telefono}"></span></td>
+	                                <td><span th:text="${v.cobrador}"></span></td>
+	                                <td><span th:text="${v.vendedor}"></span></td>
+	                                <td><span th:text="${v.zona}"></span></td>
+	                            </tr>
+	                        </tbody>
+	                    </table>
+					</form>
+				</div>
+            </div>
+        </div>
+        <footer style="position: fixed; left: 0; bottom: 0; width: 100%; background-color: black; color: white; text-align: center; padding:15px 0px 0px 0px;">
+            <div class="row">
+            	<div class="col-sm-2">
+            		<img style="padding-bottom: 12px;" alt="logo" src="/images/logo_home.jpg" width="220px" height="57px"></img>
+            	</div>
+            	<div class="col-sm-2">
+            		<i style='font-size:24px' class='far'>&#xf1f9;</i>
+            		<p>Copyright 2022</p>
+            	</div>
+            	<div class="col-sm-2">
+            		<i style='font-size:24px' class='fas'>&#xf121;</i>
+            		<p>Abel Alejandro Guillen</p>
+            	</div>
+            	<div class="col-sm-2">
+            		<i class="material-icons">&#xe0be;</i>
+            		<p>abel.guillen@hotmail.com</p>
+            	</div>
+            	<div class="col-sm-2">
+            		<i style='font-size:24px' class='fab'>&#xf08c;</i>
+            		<p>Síguenos en <a href="https://www.linkedin.com/in/abel-guillen-dev">LinkedIn</a></p>
+            	</div>
+            	<div class="col-sm-2"></div>
+            </div>
+<!--             <div class="row"> -->
+<!--             	<img style="display: block; margin-left: auto; margin-right: auto; padding-top:10px;" alt="logo" src="/images/logo_home.jpg" width="220px" height="57px"></img> -->
+<!--             </div> -->
+         </footer>
+    </body>
+</html>
