@@ -1,4 +1,4 @@
-package model;
+package com.aguillen.gestion.bomberos.model;
 
 import java.util.List;
 

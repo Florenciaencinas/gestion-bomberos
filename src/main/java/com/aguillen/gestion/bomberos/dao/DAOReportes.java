@@ -3,17 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package dao;
+package com.aguillen.gestion.bomberos.dao;
 
 import java.util.ArrayList;
 import java.util.Date;
-import model.CompradorVenta;
-import model.CompradoresRifas;
-import model.Rifa;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
+
+import com.aguillen.gestion.bomberos.model.CompradorVenta;
+import com.aguillen.gestion.bomberos.model.CompradoresRifas;
+import com.aguillen.gestion.bomberos.model.Rifa;
 
 /**
  *

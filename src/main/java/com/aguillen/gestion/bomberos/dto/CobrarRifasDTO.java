@@ -1,4 +1,4 @@
-package dto;
+package com.aguillen.gestion.bomberos.dto;
 
 public class CobrarRifasDTO {
 	

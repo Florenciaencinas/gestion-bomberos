@@ -3,9 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package dao;
-
-import model.CompradorVenta;
+package com.aguillen.gestion.bomberos.dao;
 
 import java.util.Collections;
 import java.util.List;
@@ -16,6 +14,8 @@ import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
+
+import com.aguillen.gestion.bomberos.model.CompradorVenta;
 
 /**
  *
